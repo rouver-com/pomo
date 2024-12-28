@@ -1,0 +1,27 @@
+modules = ["nodejs-20", "web"]
+run = "npm run start"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "npm run start"]
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[[ports]]
+localPort = 3001
+externalPort = 3001
+
+[workflows]
+
+[[workflows.workflow]]
+name = "start"
+mode = "sequential"
+author = 38603765
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
